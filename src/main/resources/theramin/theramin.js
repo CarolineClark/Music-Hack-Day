@@ -44,6 +44,15 @@ function logScale(n, min, max) {
 }
 
 document.onmousemove = function(event) {
+  moveUser()
+}
+
+document.touchmove = function(event) {
+  event.preventDefault();
+  moveUser()
+}
+
+function moveUser() {
   const y = 1 - event.pageY / window.innerHeight;
   const x = event.pageX / window.innerWidth;
   frequency = logScale(x, A0, C8)
@@ -61,8 +70,6 @@ document.onmousemove = function(event) {
     "x": event.pageX,
     "y": event.pageY
   }));
-
-  // updatePage(frequency, mouseGainValue, hue, sat, lit); 
 }
 
 function updatePage(user, frequency, mouseGainValue, hue, sat, lit, x, y) {

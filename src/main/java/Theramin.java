@@ -12,7 +12,6 @@ public class Theramin {
         userUsernameMap.keySet().stream().filter(Session::isOpen).forEach(session -> {
             try {
                 String jsonString = String.valueOf(new JSONObject().put("message", message).put("type", type).put("user", userId));
-                System.out.println(jsonString);
                 session.getRemote().sendString(
                         jsonString
                 );
