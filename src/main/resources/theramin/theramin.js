@@ -1,16 +1,15 @@
 const A0 = 27.5;
 const C8 = 4186;
-
 const context = new (window.AudioContext || window.webkitAudioContext)();
-// const osc = context.createOscillator();
-// const mouseGain  = context.createGain();
-// const toggleGain = context.createGain();
-
-// osc.connect(mouseGain);
-// mouseGain.connect(toggleGain);
-// toggleGain.connect(context.destination);
 
 userNodeMap = {};
+
+function createNodeIfUserDoesntExist(userId) {
+  console.log(userNodeMap[userId]);
+  if (userNodeMap[userId] == undefined) {
+    newNode(userId);
+  }
+}
 
 function newNode(userId) {
   const osc = context.createOscillator();
@@ -74,8 +73,6 @@ function moveUser() {
 
 function updatePage(user, frequency, mouseGainValue, hue, sat, lit, x, y) {
   // document.body.parentElement.style.backgroundColor ="hsl("+hue+","+sat+"%,"+lit+"%)";
-  console.log(x);
-  console.log(y);
   var userElement = userNodeMap[user]["userElement"];
   userElement.style.color ="hsl("+hue+","+sat+"%,"+lit+"%)";
   userElement.style.backgroundColor ="hsl("+hue+","+sat+"%,"+lit+"%)";

@@ -7,6 +7,7 @@ function receiveMessage(msg) {
     console.log(msg);
     const data = JSON.parse(msg.data);
     if (data.type == "music") {
+        createNodeIfUserDoesntExist(data.user);
         updateMusic(data);
     }
     else if (data.type == "newuser") {
