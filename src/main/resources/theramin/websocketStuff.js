@@ -4,7 +4,6 @@ webSocket.onmessage = function (msg) { receiveMessage(msg); };
 webSocket.onclose = function () { alert("WebSocket connection closed") };
 
 function receiveMessage(msg) {
-    console.log(msg);
     const data = JSON.parse(msg.data);
     if (data.type == "music") {
         createNodeIfUserDoesntExist(data.user);
@@ -12,6 +11,9 @@ function receiveMessage(msg) {
     }
     else if (data.type == "newuser") {
         newNode(data.user);
+    }
+    else if (data.type == "deleteuser") {
+        deleteNode(data.user);
     }
 }
 
@@ -25,7 +27,6 @@ function sendMessage(message) {
 //Update the chat-panel, and the list of connected users
 function updateMusic(data) {
     message = JSON.parse(data.message);
-    console.log(message);
     updatePage(
         data.user, 
         message.frequency, 

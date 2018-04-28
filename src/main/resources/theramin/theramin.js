@@ -5,7 +5,6 @@ const context = new (window.AudioContext || window.webkitAudioContext)();
 userNodeMap = {};
 
 function createNodeIfUserDoesntExist(userId) {
-  console.log(userNodeMap[userId]);
   if (userNodeMap[userId] == undefined) {
     newNode(userId);
   }
@@ -33,6 +32,11 @@ function newNode(userId) {
     "toggleGain": toggleGain,
     "userElement": userElement
   }
+}
+
+function deleteNode(userId) {
+  document.body.removeChild(userNodeMap[userId]["userElement"]);
+  delete userNodeMap[userId];
 }
 
 function logScale(n, min, max) {

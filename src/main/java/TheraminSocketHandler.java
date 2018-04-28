@@ -20,6 +20,7 @@ public class TheraminSocketHandler {
     public void onClose(Session user, int statusCode, String reason) {
         String username = Theramin.userUsernameMap.get(user);
         Theramin.userUsernameMap.remove(user);
+        Theramin.broadcastMessage(sender = username, msg = "", "deleteuser");
     }
 
     @OnWebSocketMessage
